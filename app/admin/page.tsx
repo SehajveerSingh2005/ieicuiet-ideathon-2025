@@ -167,7 +167,7 @@ export default function AdminDashboard() {
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold gradient-text">Admin Dashboard</h1>
+                  <h1 className="text-2xl font-bold gradient-text">Cre'oVate Admin Dashboard</h1>
                   <p className="text-sm text-muted-foreground">Event Control & Management</p>
                 </div>
               </div>

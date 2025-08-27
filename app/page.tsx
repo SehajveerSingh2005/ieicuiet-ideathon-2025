@@ -39,11 +39,11 @@ export default function HomePage() {
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
-              Welcome to Ideathon 2025
+              Welcome to Cre'oVate 2025
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-              Join the ultimate innovation challenge where teams compete, collaborate, and create the next big thing in technology.
+              Igniting Creativity, Driving Innovations - Join the ultimate innovation challenge where teams compete, collaborate, and create the next big thing in technology.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -129,48 +129,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Event Information Section */}
       <section className="py-20 px-4 bg-muted/10">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-8">
-            About Techovation 2025
+            Event Information
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">24-hour innovation challenge</span>
+                <span className="text-lg">Date: 3 September 2025</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">Real-world problem solving</span>
+                <span className="text-lg">Time: 9:00 AM – 4:00 PM</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">Expert mentorship</span>
+                <span className="text-lg">Venue: Perrie Hall, Le Corbusier Block</span>
               </div>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">Industry networking</span>
+                <span className="text-lg">Event Coordinators:</span>
+              </div>
+              <div className="flex items-center space-x-3 pl-9">
+                <span className="text-lg">1. Naman Kumar (7988115047)</span>
+              </div>
+              <div className="flex items-center space-x-3 pl-9">
+                <span className="text-lg">2. Mayank Jindal (9501059022)</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">Cash prizes</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-6 h-6 text-success" />
-                <span className="text-lg">Career opportunities</span>
+                <span className="text-lg">Faculty Coordinator: Dr. Gagan Singla</span>
               </div>
             </div>
           </div>
           
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Techovation 2025 brings together the brightest minds in technology for an unforgettable 
-            experience of innovation, collaboration, and competition. Whether you're a seasoned developer 
+            Cre'oVate 2025 brings together the brightest minds in technology for an unforgettable
+            experience of innovation, collaboration, and competition. Whether you're a seasoned developer
             or a passionate newcomer, there's a place for you in this exciting event.
           </p>
         </div>

@@ -98,7 +98,7 @@ export default function TeamRegistration() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Join Techovation and showcase your innovative project to the world. 
+            Join Cre'oVate and showcase your innovative project to the world.
             Register your team and start your journey to success!
           </p>
         </div>
@@ -246,15 +246,23 @@ export default function TeamRegistration() {
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-muted-foreground">Date: TBD</span>
+                  <span className="text-muted-foreground">Date: 3 September 2025</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-muted-foreground">Location: Virtual</span>
+                  <span className="text-muted-foreground">Time: 9:00 AM – 4:00 PM</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-muted-foreground">Duration: 24 hours</span>
+                  <span className="text-muted-foreground">Venue: Perrie Hall, Le Corbusier Block</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-muted-foreground">Event Coordinators: Naman Kumar (7988115047), Mayank Jindal (9501059022)</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-muted-foreground">Faculty Coordinator: Dr. Gagan Singla</span>
                 </div>
               </CardContent>
             </Card>

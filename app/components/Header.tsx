@@ -29,11 +29,11 @@ export default function Header() {
           {/* Logo and Brand */}
           <div className="flex items-center space-x-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-foreground shadow-lg">
-              <Trophy className="h-6 w-6 text-white" />
+              <img src="/image.png" alt="Club Logo" className="h-12 w-12 object-contain" />
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text">Ideathon 2025</h1>
-              <p className="text-xs text-muted-foreground">Techovation Event</p>
+              <h1 className="text-xl font-bold gradient-text">Cre'oVate 2025</h1>
+              <p className="text-xs text-muted-foreground">Igniting Creativity, Driving Innovations</p>
             </div>
           </div>
 

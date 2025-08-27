@@ -20,20 +20,20 @@ const geistMono = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Techovation 2025 - Ideathon Voting Platform",
-  description: "Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects. Powered by cutting-edge technology and creative minds.",
-  keywords: ["ideathon", "innovation", "voting", "tech", "startup", "competition", "2025"],
-  authors: [{ name: "Techovation Team" }],
+  title: "Cre'oVate 2025 - Ideathon Voting Platform",
+  description: "Igniting Creativity, Driving Innovations - Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects. Powered by cutting-edge technology and creative minds.",
+  keywords: ["ideathon", "innovation", "voting", "tech", "startup", "competition", "2025", "Cre'oVate"],
+  authors: [{ name: "Cre'oVate Team" }],
   openGraph: {
-    title: "Techovation 2025 - Ideathon Voting Platform",
-    description: "Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects.",
+    title: "Cre'oVate 2025 - Ideathon Voting Platform",
+    description: "Igniting Creativity, Driving Innovations - Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Techovation 2025 - Ideathon Voting Platform",
-    description: "Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects.",
+    title: "Cre'oVate 2025 - Ideathon Voting Platform",
+    description: "Igniting Creativity, Driving Innovations - Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects.",
   },
 };
 

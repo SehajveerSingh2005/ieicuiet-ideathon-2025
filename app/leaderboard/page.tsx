@@ -105,7 +105,7 @@ export default function LeaderboardPage() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Real-time rankings of all participating teams based on votes and ratings
+            Real-time rankings of all participating teams at Cre'oVate 2025 based on votes and ratings
           </p>
         </div>
 

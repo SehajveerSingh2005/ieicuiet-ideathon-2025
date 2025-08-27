@@ -60,7 +60,7 @@ export default function VotePage() {
               
               <CardTitle className="text-2xl">No Team Currently Presenting</CardTitle>
               <CardDescription className="text-base">
-                Please wait for the next team to begin their presentation
+                Please wait for the next team to begin their presentation at Cre'oVate 2025
               </CardDescription>
             </CardHeader>
             
