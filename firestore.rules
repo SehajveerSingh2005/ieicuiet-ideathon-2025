@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Teams collection
+    match /teams/{teamId} {
+      // Anyone can read teams (for leaderboard and voting)
+      allow read: if true;
+      
+      // Only authenticated users can create teams
+      allow create: if request.auth != null;
+      
+      // Only the team owner can update their team
+      allow update: if request.auth != null && request.auth.uid == teamId;
+      
+      // Admin operations are handled server-side via Firebase Admin SDK
+      // Client-side delete is disabled for security
+      allow delete: if false;
+    }
+    
+    // Votes collection
+    match /votes/{voteId} {
+      // Anyone can read votes (for leaderboard calculations)
+      allow read: if true;
+      
+      // Only authenticated users can create votes
+      allow create: if request.auth != null;
+      
+      // Only the voter can update their vote
+      allow update: if request.auth != null && 
+        request.auth.uid == resource.data.voterTeamId;
+      
+      // Admin operations are handled server-side via Firebase Admin SDK
+      // Client-side delete is disabled for security
+      allow delete: if false;
+    }
+    
+    // Voting state collection - allow read/write for authenticated users
+    match /votingState/{document} {
+      // Anyone can read voting state (for voting page)
+      allow read: if true;
+      
+      // Only authenticated users can write voting state
+      allow write: if request.auth != null;
+    }
+    
+    // App settings collection - allow read/write for authenticated users
+    match /appSettings/{document} {
+      // Anyone can read app settings (for leaderboard visibility)
+      allow read: if true;
+      
+      // Only authenticated users can write app settings
+      allow write: if request.auth != null;
+    }
+    
+    // Admin collection for admin-only operations
+    match /admin/{document=**} {
+      // Admin operations are handled server-side via Firebase Admin SDK
+      // Client-side access is disabled for security
+      allow read, write: if false;
+    }
+    
+    // Additional security: Prevent client-side admin operations
+    // All admin operations (delete teams, edit votes) must go through API routes
+    // which use Firebase Admin SDK with service account credentials
+  }
+}
