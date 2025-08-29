@@ -13,8 +13,8 @@ const FirebaseStatus = () => {
 
   const getStatusColor = () => {
     if (error) return 'destructive';
-    if (loading) return 'warning';
-    return 'success';
+    if (loading) return 'secondary';
+    return 'default';
   };
 
   const getStatusIcon = () => {
@@ -54,7 +54,7 @@ const FirebaseStatus = () => {
         {/* Authentication Status */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Authentication:</span>
-          <Badge variant={user ? 'success' : 'secondary'} className="flex items-center space-x-1">
+          <Badge variant={user ? 'default' : 'secondary'} className="flex items-center space-x-1">
             {user ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
             <span>{user ? 'Authenticated' : 'Not Authenticated'}</span>
           </Badge>
