@@ -7,13 +7,12 @@ import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Badge } from "@/app/components/ui/badge";
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
-import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
-import { 
-  Users, 
-  Edit3, 
-  Save, 
-  X, 
-  CheckCircle, 
+import {
+  Users,
+  Edit3,
+  Save,
+  X,
+  CheckCircle,
   AlertTriangle,
   User,
   Lightbulb,
@@ -25,29 +24,22 @@ interface TeamProfileProps {
   team: {
     id: string;
     name: string;
-    members: string;
-    projectDescription: string;
-    createdAt: any;
+    createdAt: Date | { toDate: () => Date } | number | string;
   };
   onEditComplete?: () => void;
 }
 
 export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) {
   const { updateTeam } = useFirebaseFirestore();
-  const { user } = useFirebaseAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: team.name || '',
-    members: team.members || '',
-    projectDescription: team.projectDescription || ''
+    name: team.name || ''
   });
 
   useEffect(() => {
     setFormData({
-      name: team.name || '',
-      members: team.members || '',
-      projectDescription: team.projectDescription || ''
+      name: team.name || ''
     });
   }, [team]);
 
@@ -57,15 +49,13 @@ export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) 
 
   const handleCancel = () => {
     setFormData({
-      name: team.name,
-      members: team.members,
-      projectDescription: team.projectDescription
+      name: team.name || ''
     });
     setIsEditing(false);
   };
 
   const handleSave = async () => {
-    if (!formData.name.trim() || !formData.members.trim() || !formData.projectDescription.trim()) {
+    if (!formData.name.trim()) {
       alert('Please fill in all fields');
       return;
     }
@@ -93,11 +83,19 @@ export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) 
     }));
   };
 
-  const formatDate = (timestamp: any) => {
+ const formatDate = (timestamp: Date | { toDate: () => Date } | number | string | null | undefined) => {
     if (!timestamp) return 'Unknown';
     
     try {
-      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      let date: Date;
+      if (typeof timestamp === 'object' && timestamp !== null && 'toDate' in timestamp) {
+        // Firebase Timestamp
+        date = timestamp.toDate();
+      } else {
+        // Standard Date, number, or string
+        date = new Date(timestamp);
+      }
+      
       return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -153,32 +151,8 @@ export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) 
                   className="border-2 border-muted-foreground/20 focus:border-primary/50"
                 />
               </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Team Members</label>
-                <Textarea
-                  value={formData.members}
-                  onChange={(e) => handleInputChange('members', e.target.value)}
-                  placeholder="Enter team members (one per line)"
-                  rows={3}
-                  className="border-2 border-muted-foreground/20 focus:border-primary/50"
-                />
-                <p className="text-xs text-muted-foreground">
-                  Enter each member's name on a new line
-                </p>
-              </div>
             </div>
             
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Project Description</label>
-              <Textarea
-                value={formData.projectDescription}
-                onChange={(e) => handleInputChange('projectDescription', e.target.value)}
-                placeholder="Describe your project idea"
-                rows={4}
-                className="border-2 border-muted-foreground/20 focus:border-primary/50"
-              />
-            </div>
             
             <div className="flex items-center space-x-3">
               <Button
@@ -226,18 +200,6 @@ export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) 
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-success" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-medium text-foreground">
-                      {(team.members || '').split('\n').filter(m => m.trim()).length} Member{(team.members || '').split('\n').filter(m => m.trim()).length !== 1 ? 's' : ''}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">Team Size</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center">
                     <Calendar className="w-5 h-5 text-warning" />
                   </div>
@@ -248,39 +210,6 @@ export default function TeamProfile({ team, onEditComplete }: TeamProfileProps) 
                     <p className="text-sm text-muted-foreground">Registration Date</p>
                   </div>
                 </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-info/10 flex items-center justify-center mt-1">
-                    <Lightbulb className="w-5 h-5 text-info" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-medium text-foreground mb-2">Project Description</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {team.projectDescription || 'No project description provided'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Team Members List */}
-            <div className="bg-muted/30 rounded-lg p-4 border border-muted-foreground/20">
-              <h4 className="text-lg font-medium text-foreground mb-3 flex items-center">
-                <Users className="w-5 h-5 text-primary mr-2" />
-                Team Members
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {(team.members || '').split('\n').filter(m => m.trim()).map((member, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span className="text-foreground">{member.trim()}</span>
-                  </div>
-                ))}
-                {!team.members || team.members.trim() === '' && (
-                  <p className="text-muted-foreground text-sm">No team members listed</p>
-                )}
               </div>
             </div>
             

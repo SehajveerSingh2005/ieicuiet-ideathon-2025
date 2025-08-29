@@ -12,15 +12,12 @@ interface VotingPanelProps {
   team: {
     id: string;
     name: string;
-    projectDescription: string;
-    members: string;
   };
   onVote: (rating: number) => void;
   isVotingActive: boolean;
-  votingEndTime: Date | null;
 }
 
-export default function VotingPanel({ team, onVote, isVotingActive, votingEndTime }: VotingPanelProps) {
+export default function VotingPanel({ team, onVote, isVotingActive }: VotingPanelProps) {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useFirebaseAuth();
@@ -190,38 +187,6 @@ export default function VotingPanel({ team, onVote, isVotingActive, votingEndTim
       </CardHeader>
       
       <CardContent className="space-y-8">
-        {/* Team Information */}
-        <div className="bg-muted/30 rounded-xl p-6 border border-muted-foreground/20">
-          <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
-            <Users className="w-5 h-5 text-primary mr-2" />
-            Team Details
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <h4 className="font-medium text-foreground mb-2">Team Members</h4>
-              <div className="space-y-1">
-                {team.members.split('\n').map((member, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span className="text-sm text-foreground">{member.trim()}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-medium text-foreground mb-2 flex items-center">
-                <Lightbulb className="w-4 h-4 text-success mr-2" />
-                Project
-              </h4>
-              <p className="text-sm text-foreground leading-relaxed">
-                {team.projectDescription}
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Rating Selection */}
         <div className="space-y-6">
           <h3 className="text-xl font-semibold text-center">Select Your Rating</h3>

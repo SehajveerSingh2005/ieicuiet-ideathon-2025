@@ -6,7 +6,7 @@ import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
-import { Users, Trash2, Edit, AlertTriangle, CheckCircle, X, Star } from 'lucide-react';
+import { Users, Trash2, CheckCircle, X, Star } from 'lucide-react';
 
 export default function TeamManagementSection() {
   const { teams, adminDeleteTeam, getVoteCount, getAverageRating } = useFirebaseFirestore();
@@ -87,9 +87,6 @@ export default function TeamManagementSection() {
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-foreground">{team.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {team.members.split('\n').length} member{team.members.split('\n').length !== 1 ? 's' : ''}
-                      </p>
                     </div>
                     
                     {/* Stats */}
@@ -105,27 +102,6 @@ export default function TeamManagementSection() {
                         </div>
                         <div className="text-xs text-muted-foreground">Avg Rating</div>
                       </div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div>
-                      <h4 className="text-sm font-medium text-foreground">Members:</h4>
-                      <div className="text-sm text-muted-foreground">
-                        {team.members.split('\n').map((member, index) => (
-                          <div key={index} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-primary" />
-                            <span>{member.trim()}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-sm font-medium text-foreground">Project:</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {team.projectDescription}
-                      </p>
                     </div>
                   </div>
                 </div>

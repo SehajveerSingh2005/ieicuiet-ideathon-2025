@@ -1,6 +1,5 @@
 "use client";
 
-import FirebaseStatus from "./components/FirebaseStatus";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
 import { Button } from "@/app/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/app/components/ui/card";
@@ -39,7 +38,7 @@ export default function HomePage() {
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
-              Welcome to Cre'oVate 2025
+              Welcome to Cre&apos;oVate 2025
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -171,7 +170,7 @@ export default function HomePage() {
           </div>
           
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Cre'oVate 2025 brings together the brightest minds in technology for an unforgettable
+            Cre&apos;oVate 2025 brings together the brightest minds in technology for an unforgettable
             experience of innovation, collaboration, and competition. Whether you're a seasoned developer
             or a passionate newcomer, there's a place for you in this exciting event.
           </p>

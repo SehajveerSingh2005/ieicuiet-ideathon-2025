@@ -161,7 +161,7 @@ export default function AdminDashboard() {
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold gradient-text">Cre'oVate Admin Dashboard</h1>
+                  <h1 className="text-2xl font-bold gradient-text">Cre&apos;oVate Admin Dashboard</h1>
                   <p className="text-sm text-muted-foreground">Event Control & Management</p>
                 </div>
               </div>
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as any)} className="space-y-6">
+        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'overview' | 'teams' | 'votes')} className="space-y-6">
           {/* Tab Navigation */}
           <TabsList className="grid w-full grid-cols-3 bg-muted/30 p-1 rounded-xl">
             <TabsTrigger 

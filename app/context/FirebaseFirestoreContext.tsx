@@ -18,8 +18,6 @@ import { db } from '@/lib/firebase';
 interface Team {
   id: string;
   name: string;
-  members: string;
-  projectDescription: string;
   email: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;

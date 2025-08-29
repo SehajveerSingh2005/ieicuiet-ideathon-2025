@@ -44,9 +44,9 @@ export default function AdminLoginPage() {
             <Shield className="w-10 h-10 text-primary" />
           </div>
           
-          <CardTitle className="text-2xl">Cre'oVate Admin Login</CardTitle>
+          <CardTitle className="text-2xl">Cre&apos;oVate Admin Login</CardTitle>
           <CardDescription className="text-base">
-            Access the Cre'oVate admin dashboard
+            Access the Cre&apos;oVate admin dashboard
           </CardDescription>
         </CardHeader>
         

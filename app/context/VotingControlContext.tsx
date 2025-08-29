@@ -24,18 +24,6 @@ export const VotingControlProvider: React.FC<{ children: ReactNode }> = ({ child
   const [votingEndTime, setVotingEndTimeState] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load voting state from Firebase on mount
-  useEffect(() => {
-    console.log('🔄 VotingControlContext: Loading voting state from Firebase...');
-    
-    // Add a small delay to ensure Firebase context is ready
-    const timer = setTimeout(() => {
-      refreshVotingState();
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
   const refreshVotingState = async () => {
     try {
       setIsLoading(true);
@@ -53,6 +41,18 @@ export const VotingControlProvider: React.FC<{ children: ReactNode }> = ({ child
       setIsLoading(false);
     }
   };
+
+  // Load voting state from Firebase on mount
+  useEffect(() => {
+    console.log('🔄 VotingControlContext: Loading voting state from Firebase...');
+    
+    // Add a small delay to ensure Firebase context is ready
+    const timer = setTimeout(() => {
+      refreshVotingState();
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [refreshVotingState]);
 
   const setCurrentVotingTeam = async (team: { id: string; name: string } | null) => {
     setCurrentVotingTeamState(team);

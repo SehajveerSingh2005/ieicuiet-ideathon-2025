@@ -3,7 +3,7 @@ import { adminDb } from '@/lib/firebase-admin';
 
 console.log('🔧 Init Voting State API: adminDb imported:', !!adminDb);
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     console.log('🔧 Init Voting State API: Starting POST request');
     console.log('🔧 Init Voting State API: adminDb available:', !!adminDb);

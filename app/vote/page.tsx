@@ -11,7 +11,7 @@ import { Vote, Users, Clock, AlertTriangle, CheckCircle, Trophy } from 'lucide-r
 
 export default function VotePage() {
   const { currentVotingTeam, isVotingActive, votingEndTime } = useVotingControl();
-  const { teams, votes, addVote, loading, getTeamByEmail } = useFirebaseFirestore();
+  const { teams, addVote, getTeamByEmail } = useFirebaseFirestore();
   const { user } = useFirebaseAuth();
   const [showTeamSelector, setShowTeamSelector] = useState(false);
 
@@ -60,7 +60,7 @@ export default function VotePage() {
               
               <CardTitle className="text-2xl">No Team Currently Presenting</CardTitle>
               <CardDescription className="text-base">
-                Please wait for the next team to begin their presentation at Cre'oVate 2025
+                Please wait for the next team to begin their presentation at Cre&apos;oVate 2025
               </CardDescription>
             </CardHeader>
             
@@ -112,12 +112,6 @@ export default function VotePage() {
                         className="p-4 bg-muted/30 rounded-lg border border-muted-foreground/20"
                       >
                         <h3 className="font-semibold text-foreground mb-2">{team.name}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {team.projectDescription || 'No project description'}
-                        </p>
-                        <div className="mt-2 text-xs text-muted-foreground">
-                          {(team.members || '').split('\n').filter(m => m.trim()).length} member{(team.members || '').split('\n').filter(m => m.trim()).length !== 1 ? 's' : ''}
-                        </div>
                       </div>
                     ))}
                   </div>
@@ -207,16 +201,13 @@ export default function VotePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-12 px-4">
       <div className="container mx-auto max-w-4xl">
-        <VotingPanel 
+        <VotingPanel
           team={{
             id: currentVotingTeam.id,
-            name: currentVotingTeam.name,
-            projectDescription: currentTeamDetails?.projectDescription || '',
-            members: currentTeamDetails?.members || ''
+            name: currentVotingTeam.name
           }}
           onVote={handleVote}
           isVotingActive={isVotingActive}
-          votingEndTime={votingEndTime}
         />
       </div>
     </div>

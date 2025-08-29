@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from "@/app/components/ui/button";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
-import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import { Users, LogOut, User, Shield } from 'lucide-react';
 
 export default function Header() {
@@ -28,10 +28,10 @@ export default function Header() {
           {/* Logo and Brand */}
           <div className="flex items-center space-x-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-foreground shadow-lg">
-              <img src="/image.png" alt="Club Logo" className="h-12 w-12 object-contain" />
+              <Image src="/image.png" alt="Club Logo" width={48} height={48} className="object-contain" />
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text">Cre'oVate 2025</h1>
+              <h1 className="text-xl font-bold gradient-text">Cre&apos;oVate 2025</h1>
               <p className="text-xs text-muted-foreground">Igniting Creativity, Driving Innovations</p>
             </div>
           </div>

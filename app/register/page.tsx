@@ -11,17 +11,22 @@ import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import TeamProfile from '@/app/components/TeamProfile';
 import { Users, Lightbulb, Target, ArrowRight, AlertCircle, Trophy, Vote } from 'lucide-react';
 
+interface RegisteredTeam {
+  id: string;
+  name: string;
+  createdAt: Date | { toDate: () => Date } | number | string;
+}
+
 export default function TeamRegistration() {
   const router = useRouter();
   const { signUp, user } = useFirebaseAuth();
   const { addTeam } = useFirebaseFirestore();
   const [teamName, setTeamName] = useState('');
   const [teamMembers, setTeamMembers] = useState('');
-  const [projectDescription, setProjectDescription] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [registeredTeam, setRegisteredTeam] = useState<any>(null);
+  const [registeredTeam, setRegisteredTeam] = useState<RegisteredTeam | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,13 +39,11 @@ export default function TeamRegistration() {
       // Add team to Firestore
       const teamId = await addTeam({
         name: teamName,
-        members: teamMembers,
-        projectDescription: projectDescription,
-        email: email,
+        email: email
       });
       
       // Set registered team to show profile
-      setRegisteredTeam({ id: teamId, name: teamName, members: teamMembers, projectDescription });
+      setRegisteredTeam({ id: teamId, name: teamName, createdAt: new Date() });
       
     } catch (error) {
       console.error('Error registering team:', error);
@@ -54,15 +57,14 @@ export default function TeamRegistration() {
     router.push('/vote');
   };
 
-  const isFormValid = teamName.trim() && teamMembers.trim() && projectDescription.trim() && email.trim() && password.length >= 6;
+  const isFormValid = teamName.trim() && email.trim() && password.length >= 6;
 
   // Show team profile if team is registered
   if (registeredTeam || user) {
-    const teamToShow = registeredTeam || { 
-      id: user?.uid, 
-      name: user?.displayName, 
-      members: '', 
-      projectDescription: '' 
+    const teamToShow = registeredTeam || {
+      id: user?.uid || '',
+      name: user?.displayName || '',
+      createdAt: new Date()
     };
     
     return (
@@ -98,7 +100,7 @@ export default function TeamRegistration() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Join Cre'oVate and showcase your innovative project to the world.
+            Join Cre&apos;oVate and showcase your innovative project to the world.
             Register your team and start your journey to success!
           </p>
         </div>
@@ -168,49 +170,6 @@ export default function TeamRegistration() {
                     />
                   </div>
                   
-                  {/* Team Members */}
-                  <div className="space-y-3">
-                    <label htmlFor="teamMembers" className="text-sm font-semibold text-foreground flex items-center">
-                      <Users className="w-4 h-4 text-secondary-foreground mr-2" />
-                      Team Members
-                    </label>
-                    <Textarea
-                      id="teamMembers"
-                      value={teamMembers}
-                      onChange={(e) => setTeamMembers(e.target.value)}
-                      placeholder="List all team members (one per line)
-Example:
-John Doe - Developer
-Jane Smith - Designer
-Mike Johnson - Project Manager"
-                      required
-                      rows={4}
-                      className="text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors resize-none"
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      Enter each team member on a new line for better organization
-                    </p>
-                  </div>
-                  
-                  {/* Project Description */}
-                  <div className="space-y-3">
-                    <label htmlFor="projectDescription" className="text-sm font-semibold text-foreground flex items-center">
-                      <Lightbulb className="w-4 h-4 text-success mr-2" />
-                      Project Description
-                    </label>
-                    <Textarea
-                      id="projectDescription"
-                      value={projectDescription}
-                      onChange={(e) => setProjectDescription(e.target.value)}
-                      placeholder="Describe your innovative project idea in detail. What problem does it solve? How does it work? What makes it unique?"
-                      required
-                      rows={6}
-                      className="text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors resize-none"
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      Be detailed and specific about your project's innovation and impact
-                    </p>
-                  </div>
                 </CardContent>
                 
                 <CardFooter className="pt-0">

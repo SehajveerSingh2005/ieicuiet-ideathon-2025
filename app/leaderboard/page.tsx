@@ -3,7 +3,6 @@
 import { useLeaderboardVisibility } from '@/app/context/LeaderboardVisibilityContext';
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/app/components/ui/card";
-import { Badge } from "@/app/components/ui/badge";
 import { Trophy, Users, Star, TrendingUp, Medal, Award } from 'lucide-react';
 
 export default function LeaderboardPage() {
@@ -105,7 +104,7 @@ export default function LeaderboardPage() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Real-time rankings of all participating teams at Cre'oVate 2025 based on votes and ratings
+            Real-time rankings of all participating teams at Cre&apos;oVate 2025 based on votes and ratings
           </p>
         </div>
 
@@ -293,9 +292,6 @@ export default function LeaderboardPage() {
                         
                         <div>
                           <h3 className="text-lg font-semibold text-foreground">{team.name}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            {team.members.split('\n').length} member{team.members.split('\n').length !== 1 ? 's' : ''}
-                          </p>
                         </div>
                       </div>
                       

@@ -149,8 +149,8 @@ export default function VotingControls() {
         {/* Instructions */}
         <div className="p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
           <p className="text-sm text-blue-700 dark:text-blue-300">
-            <strong>Instructions:</strong> Select a team from the dropdown above, then click "Start Voting" to begin the voting session. 
-            Teams will be able to vote for the selected team until you click "End Voting".
+            <strong>Instructions:</strong> Select a team from the dropdown above, then click &quot;Start Voting&quot; to begin the voting session. 
+            Teams will be able to vote for the selected team until you click &quot;End Voting&quot;.
           </p>
         </div>
       </CardContent>
