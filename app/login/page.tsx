@@ -25,8 +25,8 @@ export default function TeamLoginPage() {
     try {
       await signIn(email, password);
       router.push('/');
-    } catch (error: any) {
-      setError(error.message || 'Failed to sign in');
+    } catch (error) {
+      setError((error as Error).message || 'Failed to sign in');
     } finally {
       setIsLoading(false);
     }

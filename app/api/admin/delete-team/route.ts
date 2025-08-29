@@ -37,8 +37,8 @@ export async function DELETE(request: NextRequest) {
       const userRecord = await adminAuth.getUserByEmail(teamEmail);
       await adminAuth.deleteUser(userRecord.uid);
       console.log('✅ Delete Team API: User deleted from Authentication');
-    } catch (authError: any) {
-      console.error('⚠️ Delete Team API: Error deleting user from auth (user might not exist):', authError.message);
+    } catch (authError) {
+      console.error('⚠️ Delete Team API: Error deleting user from auth (user might not exist):', (authError as Error).message);
       // Continue with team deletion even if auth deletion fails
     }
     
@@ -61,8 +61,8 @@ export async function DELETE(request: NextRequest) {
       success: true, 
       message: 'Team, user account, and associated votes deleted successfully' 
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error deleting team:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }

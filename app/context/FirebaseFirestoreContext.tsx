@@ -7,9 +7,6 @@ import {
   addDoc, 
   updateDoc, 
   deleteDoc, 
-  getDocs, 
-  query, 
-  where, 
   onSnapshot,
   serverTimestamp,
   Timestamp,
@@ -153,9 +150,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         updatedAt: serverTimestamp(),
       });
       return docRef.id;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error adding team:', error);
-      throw new Error(`Failed to add team: ${error.message}`);
+      throw new Error(`Failed to add team: ${(error as Error).message}`);
     }
   };
 
@@ -170,9 +167,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         ...updates,
         updatedAt: serverTimestamp(),
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error updating team:', error);
-      throw new Error(`Failed to update team: ${error.message}`);
+      throw new Error(`Failed to update team: ${(error as Error).message}`);
     }
   };
 
@@ -190,9 +187,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       for (const vote of teamVotes) {
         await deleteDoc(doc(db, 'votes', vote.id));
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting team:', error);
-      throw new Error(`Failed to delete team: ${error.message}`);
+      throw new Error(`Failed to delete team: ${(error as Error).message}`);
     }
   };
 
@@ -219,12 +216,12 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         createdAt: serverTimestamp(),
       });
       return docRef.id;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error adding vote:', error);
-      if (error.message.includes('Teams cannot vote') || error.message.includes('already voted')) {
+      if ((error as Error).message.includes('Teams cannot vote') || (error as Error).message.includes('already voted')) {
         throw error;
       }
-      throw new Error(`Failed to add vote: ${error.message}`);
+      throw new Error(`Failed to add vote: ${(error as Error).message}`);
     }
   };
 
@@ -238,9 +235,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       await updateDoc(voteRef, {
         rating: newRating,
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error updating vote:', error);
-      throw new Error(`Failed to update vote: ${error.message}`);
+      throw new Error(`Failed to update vote: ${(error as Error).message}`);
     }
   };
 
@@ -251,9 +248,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
 
     try {
       await deleteDoc(doc(db, 'votes', voteId));
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting vote:', error);
-      throw new Error(`Failed to delete vote: ${error.message}`);
+      throw new Error(`Failed to delete vote: ${(error as Error).message}`);
     }
   };
 
@@ -315,9 +312,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       setVotes(prevVotes => prevVotes.filter(vote => vote.teamId !== teamId));
       
       return { deletedTeamEmail: teamToDelete?.email };
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting team:', error);
-      throw new Error(`Failed to delete team: ${error.message}`);
+      throw new Error(`Failed to delete team: ${(error as Error).message}`);
     }
   };
 
@@ -338,9 +335,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
 
       // Remove from local state after successful deletion
       setVotes(prevVotes => prevVotes.filter(vote => vote.id !== voteId));
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting vote:', error);
-      throw new Error(`Failed to delete vote: ${error.message}`);
+      throw new Error(`Failed to delete vote: ${(error as Error).message}`);
     }
   };
 
@@ -363,9 +360,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       setVotes(prevVotes => prevVotes.map(vote => 
         vote.id === voteId ? { ...vote, rating: newRating } : vote
       ));
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error updating vote:', error);
-      throw new Error(`Failed to update vote: ${error.message}`);
+      throw new Error(`Failed to update vote: ${(error as Error).message}`);
     }
   };
 
@@ -388,9 +385,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         };
       }
       return { currentVotingTeam: null, isVotingActive: false, votingEndTime: null };
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error getting voting state:', error);
-      throw new Error(`Failed to get voting state: ${error.message}`);
+      throw new Error(`Failed to get voting state: ${(error as Error).message}`);
     }
   };
 
@@ -414,9 +411,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       
       await setDoc(docRef, dataToSet);
       console.log('✅ FirebaseFirestore: setVotingState completed successfully');
-    } catch (error: any) {
+    } catch (error) {
       console.error('❌ FirebaseFirestore: Error setting voting state:', error);
-      throw new Error(`Failed to set voting state: ${error.message}`);
+      throw new Error(`Failed to set voting state: ${(error as Error).message}`);
     }
   };
 
@@ -435,7 +432,7 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         return data.isVisible ?? true; // Default to visible
       }
       return true; // Default to visible
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error getting leaderboard visibility:', error);
       return true; // Default to visible on error
     }
@@ -452,9 +449,9 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         isVisible: visible,
         updatedAt: serverTimestamp(),
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error setting leaderboard visibility:', error);
-      throw new Error(`Failed to set leaderboard visibility: ${error.message}`);
+      throw new Error(`Failed to set leaderboard visibility: ${(error as Error).message}`);
     }
   };
 

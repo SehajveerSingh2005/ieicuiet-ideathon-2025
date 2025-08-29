@@ -95,16 +95,6 @@ export const VotingControlProvider: React.FC<{ children: ReactNode }> = ({ child
       console.error('Error saving voting state to Firebase:', error);
       // Continue with local state even if Firebase fails
     }
-    
-    // Clear current voting team after 10 seconds
-    setTimeout(async () => {
-      setCurrentVotingTeamState(null);
-      try {
-        await setVotingState({ currentVotingTeam: null, isVotingActive: false, votingEndTime: newEndTime });
-      } catch (error) {
-        console.error('Error clearing voting state in Firebase:', error);
-      }
-    }, 10000);
   };
 
   return (

@@ -41,9 +41,9 @@ export default function VotePage() {
       // Optionally redirect to leaderboard or refresh the page
       // window.location.href = '/leaderboard';
       
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error submitting vote:', error);
-      alert(`Failed to submit vote: ${error.message}`);
+      alert(`Failed to submit vote: ${(error as Error).message}`);
     }
   };
 

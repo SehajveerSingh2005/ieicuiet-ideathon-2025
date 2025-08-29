@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true, message: 'Voting state initialized' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error initializing voting state:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }

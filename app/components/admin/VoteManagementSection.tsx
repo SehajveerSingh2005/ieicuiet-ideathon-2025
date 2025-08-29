@@ -6,10 +6,10 @@ import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
-import { Star, Edit, Trash2, Save, X, Users, Vote, TrendingUp } from 'lucide-react';
+import { Star, Edit, Trash2, Save, X, Users, Vote } from 'lucide-react';
 
 export default function VoteManagementSection() {
-  const { teams, votes, adminUpdateVote, adminDeleteVote, getTeamVotes } = useFirebaseFirestore();
+  const { teams, adminUpdateVote, adminDeleteVote, getTeamVotes } = useFirebaseFirestore();
   const [editingVote, setEditingVote] = useState<{ voteId: string; currentRating: number } | null>(null);
   const [newRating, setNewRating] = useState<number>(0);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -30,9 +30,9 @@ export default function VoteManagementSection() {
       setEditingVote(null);
       setNewRating(0);
       alert('Vote updated successfully!');
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error updating vote:', error);
-      alert(`Failed to update vote: ${error.message}`);
+      alert(`Failed to update vote: ${(error as Error).message}`);
     } finally {
       setIsUpdating(false);
     }
@@ -48,9 +48,9 @@ export default function VoteManagementSection() {
     try {
       await adminDeleteVote(voteId);
       alert('Vote deleted successfully!');
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting vote:', error);
-      alert(`Failed to delete vote: ${error.message}`);
+      alert(`Failed to delete vote: ${(error as Error).message}`);
     } finally {
       setIsDeleting(null);
     }

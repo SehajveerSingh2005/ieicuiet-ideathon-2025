@@ -27,8 +27,8 @@ export async function PUT(request: NextRequest) {
     console.log('✅ Update Vote API: Vote updated successfully');
 
     return NextResponse.json({ success: true, message: 'Vote updated successfully' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error updating vote:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }

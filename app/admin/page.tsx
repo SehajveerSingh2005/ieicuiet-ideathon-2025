@@ -8,7 +8,6 @@ import { Badge } from "@/app/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import { useVotingControl } from '@/app/context/VotingControlContext';
-import { useLeaderboardVisibility } from '@/app/context/LeaderboardVisibilityContext';
 import VotingControls from '@/app/components/admin/VotingControls';
 import LeaderboardControls from '@/app/components/admin/LeaderboardControls';
 import TeamManagementSection from '@/app/components/admin/TeamManagementSection';
@@ -19,30 +18,25 @@ import {
   Shield, 
   Users, 
   Vote, 
-  Trophy, 
   Settings, 
   BarChart3, 
   Trash2, 
   Edit3,
   LogOut,
-  RefreshCw,
-  AlertTriangle
+  RefreshCw
 } from 'lucide-react';
 import { useAdminAuth } from '@/app/context/AdminAuthContext';
 
 export default function AdminDashboard() {
   const router = useRouter();
   const { adminUser, adminLogout } = useAdminAuth();
-  const { teams, votes, loading } = useFirebaseFirestore();
+  const { teams, votes } = useFirebaseFirestore();
   const { 
     isVotingActive, 
     setIsVotingActive, 
-    endVoting, 
-    currentVotingTeam, 
     setCurrentVotingTeam, 
     setVotingEndTime 
   } = useVotingControl();
-  const { isVisible, setIsVisible } = useLeaderboardVisibility();
   const [activeTab, setActiveTab] = useState<'overview' | 'teams' | 'votes'>('overview');
 
   // Check if user is admin using the separate admin context

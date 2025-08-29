@@ -6,7 +6,7 @@ import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
-import { Star, Vote, CheckCircle, Clock, AlertCircle, Users, Lightbulb } from 'lucide-react';
+import { Vote, CheckCircle, Clock, AlertCircle, Users, Lightbulb } from 'lucide-react';
 
 interface VotingPanelProps {
   team: {
@@ -34,7 +34,7 @@ export default function VotingPanel({ team, onVote, isVotingActive, votingEndTim
   const hasVotedForThisTeam = currentUserTeam && hasVoted(team.id, currentUserTeam.id);
   
   // Check if this is the current user's own team
-  const isOwnTeam = user?.email === team.email;
+  const isOwnTeam = currentUserTeam?.id === team.id;
   
   // Debug logging
   console.log('🔍 VotingPanel Debug:', {
@@ -225,33 +225,6 @@ export default function VotingPanel({ team, onVote, isVotingActive, votingEndTim
         {/* Rating Selection */}
         <div className="space-y-6">
           <h3 className="text-xl font-semibold text-center">Select Your Rating</h3>
-          
-          {/* Rating Guide */}
-          <div className="bg-muted/20 rounded-xl p-4 border border-muted-foreground/20">
-            <h4 className="font-medium text-foreground mb-3 text-center">Rating Guide</h4>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
-              <div className="text-center p-2 rounded-lg bg-destructive/10 border border-destructive/20">
-                <div className="font-bold text-destructive">1 - Poor</div>
-                <div className="text-destructive/70">Major issues</div>
-              </div>
-              <div className="text-center p-2 rounded-lg bg-warning/10 border border-warning/20">
-                <div className="font-bold text-warning">2 - Fair</div>
-                <div className="text-warning/70">Some problems</div>
-              </div>
-              <div className="text-center p-2 rounded-lg bg-info/10 border border-info/20">
-                <div className="font-bold text-info">3 - Good</div>
-                <div className="text-info/70">Solid work</div>
-              </div>
-              <div className="text-center p-2 rounded-lg bg-primary/10 border border-primary/20">
-                <div className="font-bold text-primary">4 - Very Good</div>
-                <div className="text-primary/70">High quality</div>
-              </div>
-              <div className="text-center p-2 rounded-lg bg-success/10 border border-success/20">
-                <div className="font-bold text-success">5 - Excellent</div>
-                <div className="text-success/70">Outstanding</div>
-              </div>
-            </div>
-          </div>
 
           {/* Rating Buttons */}
           <div className="flex justify-center space-x-3">
@@ -284,11 +257,20 @@ export default function VotingPanel({ team, onVote, isVotingActive, votingEndTim
 
           {/* Selected Rating Details */}
           {selectedRating && (
-            <div className={`text-center p-4 rounded-xl bg-${getRatingColor(selectedRating)}/10 border border-${getRatingColor(selectedRating)}/20`}>
-              <h4 className={`font-semibold text-${getRatingColor(selectedRating)} mb-2`}>
+            <div className={`
+              text-center p-4 rounded-xl border
+              ${getRatingColor(selectedRating) === 'text-destructive'
+                ? 'bg-destructive/10 border-destructive/20 text-destructive'
+                : getRatingColor(selectedRating) === 'text-warning'
+                ? 'bg-warning/10 border-warning/20 text-warning'
+                : getRatingColor(selectedRating) === 'text-info'
+                ? 'bg-info/10 border-info/20 text-info'
+                : 'bg-success/10 border-success/20 text-success'}
+            `}>
+              <h4 className={`font-semibold mb-2 ${getRatingColor(selectedRating)}`}>
                 Rating {selectedRating}: {getRatingLabel(selectedRating)}
               </h4>
-              <p className={`text-sm text-${getRatingColor(selectedRating)}/70`}>
+              <p className={`text-sm ${getRatingColor(selectedRating)}/70`}>
                 {getRatingDescription(selectedRating)}
               </p>
             </div>

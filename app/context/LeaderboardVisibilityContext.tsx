@@ -14,7 +14,7 @@ export const LeaderboardVisibilityProvider: React.FC<{ children: ReactNode }> = 
   const [isVisible, setIsVisibleState] = useState<boolean>(true);
   const { getLeaderboardVisibility, setLeaderboardVisibility } = useFirebaseFirestore();
 
-  // Load leaderboard visibility from Firebase on mount
+ // Load leaderboard visibility from Firebase on mount
   useEffect(() => {
     const loadVisibility = async () => {
       try {
@@ -28,7 +28,7 @@ export const LeaderboardVisibilityProvider: React.FC<{ children: ReactNode }> = 
     };
     
     loadVisibility();
-  }, []);
+  }, [getLeaderboardVisibility]);
 
   const setIsVisible = async (visible: boolean) => {
     try {

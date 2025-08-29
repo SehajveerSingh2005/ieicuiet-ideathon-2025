@@ -30,9 +30,9 @@ export default function TeamManagementSection() {
       } else {
         alert('Team deleted successfully!');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error deleting team:', error);
-      alert(`Failed to delete team: ${error.message}`);
+      alert(`Failed to delete team: ${(error as Error).message}`);
     } finally {
       setDeletingTeamId(null);
     }

@@ -31,8 +31,8 @@ export default function FirebaseTest() {
       const newState = await getVotingState();
       setTestResult(prev => prev + `\n✅ Read back successful: ${JSON.stringify(newState)}`);
       
-    } catch (error: any) {
-      setTestResult(`❌ Error: ${error.message}`);
+    } catch (error) {
+      setTestResult(`❌ Error: ${(error as Error).message}`);
       console.error('Firebase test error:', error);
     } finally {
       setLoading(false);
@@ -48,8 +48,8 @@ export default function FirebaseTest() {
         votingEndTime: null
       });
       setTestResult('✅ Test data reset successfully!');
-    } catch (error: any) {
-      setTestResult(`❌ Error resetting: ${error.message}`);
+    } catch (error) {
+      setTestResult(`❌ Error resetting: ${(error as Error).message}`);
     } finally {
       setLoading(false);
     }

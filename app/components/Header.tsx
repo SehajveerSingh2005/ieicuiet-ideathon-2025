@@ -5,11 +5,10 @@ import Link from 'next/link';
 import { Button } from "@/app/components/ui/button";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
-import { Trophy, Users, Vote, LogOut, User, Shield } from 'lucide-react';
+import { Users, LogOut, User, Shield } from 'lucide-react';
 
 export default function Header() {
   const { user, logout } = useFirebaseAuth();
-  const { teams } = useFirebaseFirestore();
 
   const handleLogout = async () => {
     try {

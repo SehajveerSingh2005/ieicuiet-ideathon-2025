@@ -9,12 +9,12 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
 import { useFirebaseFirestore } from '@/app/context/FirebaseFirestoreContext';
 import TeamProfile from '@/app/components/TeamProfile';
-import { Users, Lightbulb, Target, ArrowRight, CheckCircle, AlertCircle, Trophy, Vote } from 'lucide-react';
+import { Users, Lightbulb, Target, ArrowRight, AlertCircle, Trophy, Vote } from 'lucide-react';
 
 export default function TeamRegistration() {
   const router = useRouter();
   const { signUp, user } = useFirebaseAuth();
-  const { addTeam, teams } = useFirebaseFirestore();
+  const { addTeam } = useFirebaseFirestore();
   const [teamName, setTeamName] = useState('');
   const [teamMembers, setTeamMembers] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
@@ -42,9 +42,9 @@ export default function TeamRegistration() {
       // Set registered team to show profile
       setRegisteredTeam({ id: teamId, name: teamName, members: teamMembers, projectDescription });
       
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error registering team:', error);
-      alert(`Registration failed: ${error.message}`);
+      alert(`Registration failed: ${(error as Error).message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -178,7 +178,11 @@ export default function TeamRegistration() {
                       id="teamMembers"
                       value={teamMembers}
                       onChange={(e) => setTeamMembers(e.target.value)}
-                      placeholder="List all team members (one per line)&#10;Example:&#10;John Doe - Developer&#10;Jane Smith - Designer&#10;Mike Johnson - Project Manager"
+                      placeholder="List all team members (one per line)
+Example:
+John Doe - Developer
+Jane Smith - Designer
+Mike Johnson - Project Manager"
                       required
                       rows={4}
                       className="text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors resize-none"
