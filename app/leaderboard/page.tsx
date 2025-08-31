@@ -12,7 +12,7 @@ export default function LeaderboardPage() {
   // If leaderboard is hidden, show message
   if (!isVisible) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-start justify-center p-4 pt-16 sm:pt-20">
         <Card className="max-w-md w-full border-0 bg-gradient-to-br from-muted/5 to-muted/10 shadow-xl">
           <CardHeader className="text-center pb-6">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/10 mb-6">
@@ -73,7 +73,7 @@ export default function LeaderboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-start justify-center p-4 pt-16 sm:pt-20">
         <Card className="max-w-md w-full border-0 bg-gradient-to-br from-muted/5 to-muted/10 shadow-xl">
           <CardHeader className="text-center pb-6">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/10 mb-6">

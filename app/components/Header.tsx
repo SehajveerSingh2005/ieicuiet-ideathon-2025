@@ -43,7 +43,7 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-bold gradient-text">Cre'oVate 2025</h1>
-              <p className="text-xs text-muted-foreground">Igniting Creativity, Driving Innovations</p>
+              <p className="text-xs text-muted-foreground hidden sm:block">Igniting Creativity, Driving Innovations</p>
             </div>
           </div>
 
@@ -90,8 +90,8 @@ export default function Header() {
             )}
           </nav>
 
-          {/* User Actions */}
-          <div className="flex items-center space-x-3">
+          {/* User Actions - Only shown on desktop for logged out users */}
+          <div className="hidden md:flex items-center space-x-3">
             {user ? (
               <div className="flex items-center space-x-3">
                 {/* Team Info */}
@@ -110,7 +110,7 @@ export default function Header() {
                   className="btn-animate border-2 border-muted-foreground/20 text-foreground hover:bg-muted/10"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
-                  Logout
+                  <span className="hidden sm:inline">Logout</span>
                 </Button>
               </div>
             ) : (
@@ -123,7 +123,7 @@ export default function Header() {
                     className="btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10"
                   >
                     <User className="w-4 h-4 mr-2" />
-                    Login
+                    <span className="hidden sm:inline">Login</span>
                   </Button>
                 </Link>
                 
@@ -135,7 +135,7 @@ export default function Header() {
                     className="btn-animate border-2 border-primary/20 text-primary hover:bg-primary/10"
                   >
                     <Users className="w-4 h-4 mr-2" />
-                    Register Team
+                    <span className="hidden sm:inline">Register Team</span>
                   </Button>
                 </Link>
                  {/* Admin Login Button */}
@@ -146,7 +146,7 @@ export default function Header() {
                      className="btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10"
                    >
                      <Shield className="w-4 h-4 mr-2" />
-                     Admin
+                     <span className="hidden sm:inline">Admin</span>
                    </Button>
                  </Link>
               </div>
@@ -188,6 +188,81 @@ export default function Header() {
               >
                 Admin
               </Link>
+            )}
+            
+            {/* Mobile User Actions */}
+            {!user && (
+              <div className="pt-4 border-t border-muted-foreground/20 space-y-3">
+                <Link 
+                  href="/login" 
+                  className="block w-full"
+                  onClick={closeMenu}
+                >
+                  <Button 
+                    variant="ghost"
+                    size="sm"
+                    className="w-full btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10 justify-start"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Login
+                  </Button>
+                </Link>
+                
+                <Link 
+                  href="/register" 
+                  className="block w-full"
+                  onClick={closeMenu}
+                >
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    className="w-full btn-animate border-2 border-primary/20 text-primary hover:bg-primary/10 justify-start"
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Register Team
+                  </Button>
+                </Link>
+                
+                <Link 
+                  href="/admin/login" 
+                  className="block w-full"
+                  onClick={closeMenu}
+                >
+                  <Button 
+                    variant="ghost"
+                    size="sm"
+                    className="w-full btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10 justify-start"
+                  >
+                    <Shield className="w-4 h-4 mr-2" />
+                    Admin Login
+                  </Button>
+                </Link>
+              </div>
+            )}
+            
+            {user && (
+              <div className="pt-4 border-t border-muted-foreground/20">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span className="font-medium text-foreground">
+                      {user.displayName || 'Team'}
+                    </span>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      handleLogout();
+                      closeMenu();
+                    }}
+                    variant="outline"
+                    size="sm"
+                    className="btn-animate border-2 border-muted-foreground/20 text-foreground hover:bg-muted/10"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              </div>
             )}
           </div>
         </div>
