@@ -1,14 +1,15 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/app/components/ui/button";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
-import { Users, LogOut, User, Shield } from 'lucide-react';
+import { Users, LogOut, User, Shield, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const { user, logout } = useFirebaseAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -21,6 +22,16 @@ export default function Header() {
   // Check if user is admin
   const isAdmin = user?.email === 'admin@techovation.com' || user?.email === 'admin@example.com' || user?.email?.includes('admin');
 
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close mobile menu
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,10 +42,23 @@ export default function Header() {
               <Image src="/image.png" alt="Club Logo" width={48} height={48} className="object-contain" />
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text">Cre&apos;oVate 2025</h1>
+              <h1 className="text-xl font-bold gradient-text">Cre'oVate 2025</h1>
               <p className="text-xs text-muted-foreground">Igniting Creativity, Driving Innovations</p>
             </div>
           </div>
+
+          {/* Hamburger Menu Button (Mobile) */}
+          <button
+            className="md:hidden p-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
@@ -130,6 +154,44 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-background border-t">
+          <div className="container mx-auto px-4 py-4 space-y-4">
+            <Link 
+              href="/" 
+              className="block py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
+              onClick={closeMenu}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/leaderboard" 
+              className="block py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
+              onClick={closeMenu}
+            >
+              Leaderboard
+            </Link>
+            <Link 
+              href="/vote" 
+              className="block py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
+              onClick={closeMenu}
+            >
+              Vote
+            </Link>
+            {isAdmin && (
+              <Link 
+                href="/admin" 
+                className="block py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
+                onClick={closeMenu}
+              >
+                Admin
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

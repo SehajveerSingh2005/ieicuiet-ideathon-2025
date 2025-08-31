@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   description: "Igniting Creativity, Driving Innovations - Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects. Powered by cutting-edge technology and creative minds.",
   keywords: ["ideathon", "innovation", "voting", "tech", "startup", "competition", "2025", "Cre'oVate"],
   authors: [{ name: "Cre'oVate Team" }],
+  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
   openGraph: {
     title: "Cre'oVate 2025 - Ideathon Voting Platform",
     description: "Igniting Creativity, Driving Innovations - Join the most innovative ideathon event of 2025. Register your team, present your ideas, and vote for the best projects.",

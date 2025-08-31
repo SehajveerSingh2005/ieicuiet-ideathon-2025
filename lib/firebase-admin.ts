@@ -56,18 +56,31 @@ if (isDevelopment) {
   // For production, use environment variables
   console.log('🔧 Firebase Admin: Using production environment variables');
   try {
+    // Check if required environment variables are present
+    const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, '\n');
+    
+    if (!projectId || !clientEmail || !privateKey) {
+      throw new Error('Missing required Firebase Admin environment variables');
+    }
+    
     adminApp = initializeApp({
       credential: cert({
-        projectId: process.env.FIREBASE_ADMIN_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
-        privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, '\n')
+        projectId,
+        clientEmail,
+        privateKey
       }),
-      databaseURL: `https://${process.env.FIREBASE_ADMIN_PROJECT_ID}.firebaseio.com`
+      databaseURL: `https://${projectId}.firebaseio.com`
     }, 'firebase-admin'); // Give it a unique name
     
     console.log('✅ Firebase Admin: Production app initialized successfully');
   } catch (error) {
     console.error('❌ Firebase Admin: Error initializing production app:', error);
+    console.error('🔧 Firebase Admin: Environment variables check:');
+    console.error('  FIREBASE_ADMIN_PROJECT_ID:', !!process.env.FIREBASE_ADMIN_PROJECT_ID);
+    console.error('  FIREBASE_ADMIN_CLIENT_EMAIL:', !!process.env.FIREBASE_ADMIN_CLIENT_EMAIL);
+    console.error('  FIREBASE_ADMIN_PRIVATE_KEY:', !!process.env.FIREBASE_ADMIN_PRIVATE_KEY);
     adminApp = null;
   }
 }

@@ -95,16 +95,16 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
     return (
       <Card className="border-0 bg-gradient-to-br from-warning/5 to-warning/10 shadow-xl">
         <CardHeader className="text-center pb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-warning/10 mb-4">
-            <AlertCircle className="w-8 h-8 text-warning" />
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-warning/10 mb-4">
+            <AlertCircle className="w-7 h-7 sm:w-8 sm:h-8 text-warning" />
           </div>
-          <CardTitle className="text-xl text-warning">Cannot Vote for Own Team</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl text-warning">Cannot Vote for Own Team</CardTitle>
           <CardDescription className="text-base">
             You cannot vote for your own team
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm sm:text-base">
             Teams are not allowed to vote for themselves. Please wait for other teams to present.
           </p>
         </CardContent>
@@ -117,10 +117,10 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
     return (
       <Card className="border-0 bg-gradient-to-br from-success/5 to-success/10 shadow-xl">
         <CardHeader className="text-center pb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10 mb-4">
-            <CheckCircle className="w-8 h-8 text-success" />
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-success/10 mb-4">
+            <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8 text-success" />
           </div>
-          <CardTitle className="text-xl text-success">
+          <CardTitle className="text-xl sm:text-2xl text-success">
             Already Voted
           </CardTitle>
           <CardDescription className="text-base">
@@ -128,7 +128,7 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm sm:text-base">
             Your vote has been recorded. Please wait for the next team to present.
           </p>
         </CardContent>
@@ -141,16 +141,16 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
     return (
       <Card className="border-0 bg-gradient-to-br from-info/5 to-info/10 shadow-xl">
         <CardHeader className="text-center pb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-info/10 mb-4">
-            <AlertCircle className="w-8 h-8 text-info" />
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-info/10 mb-4">
+            <AlertCircle className="w-7 h-7 sm:w-8 sm:h-8 text-info" />
           </div>
-          <CardTitle className="text-xl text-info">Cannot Vote</CardTitle>
+          <CardTitle className="text-xl sm:text-2xl text-info">Cannot Vote</CardTitle>
           <CardDescription className="text-base">
             You have already voted for this team
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm sm:text-base">
             Please wait for the next team to present or check the leaderboard.
           </p>
         </CardContent>
@@ -161,59 +161,59 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
   return (
     <Card className="border-0 bg-gradient-to-br from-background to-muted/10 shadow-xl">
       <CardHeader className="text-center pb-6">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-          <Vote className="w-10 h-10 text-primary" />
+        <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 mb-4 sm:mb-6">
+          <Vote className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
         </div>
         
-        <CardTitle className="text-3xl font-bold">Vote for {team.name}</CardTitle>
-        <CardDescription className="text-xl">
+        <CardTitle className="text-2xl sm:text-3xl font-bold">Vote for {team.name}</CardTitle>
+        <CardDescription className="text-lg sm:text-xl">
           Rate this team's presentation and project
         </CardDescription>
         
         {/* Voting Status Badge */}
         <div className="mt-4">
           {isVotingActive ? (
-            <Badge className="bg-success text-success-foreground px-4 py-2 text-sm font-semibold">
-              <Clock className="w-4 h-4 mr-2" />
+            <Badge className="bg-success text-success-foreground px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-semibold">
+              <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
               Voting Active
             </Badge>
           ) : (
-            <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold">
-              <Clock className="w-4 h-4 mr-2" />
+            <Badge variant="secondary" className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-semibold">
+              <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
               Voting Paused
             </Badge>
           )}
         </div>
       </CardHeader>
       
-      <CardContent className="space-y-8">
+      <CardContent className="space-y-6 sm:space-y-8">
         {/* Rating Selection */}
-        <div className="space-y-6">
-          <h3 className="text-xl font-semibold text-center">Select Your Rating</h3>
+        <div className="space-y-5 sm:space-y-6">
+          <h3 className="text-lg sm:text-xl font-semibold text-center">Select Your Rating</h3>
 
           {/* Rating Buttons */}
-          <div className="flex justify-center space-x-3">
+          <div className="flex justify-center space-x-2 sm:space-x-3">
             {[1, 2, 3, 4, 5].map((rating) => (
               <button
                 key={rating}
                 onClick={() => handleRatingSelect(rating)}
                 className={`
-                  relative w-16 h-16 rounded-2xl border-2 transition-all duration-200 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-primary/20
+                  relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl border-2 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20
                   ${selectedRating === rating
-                    ? 'border-primary bg-primary text-primary-foreground shadow-lg scale-110'
+                    ? 'border-primary bg-primary text-primary-foreground shadow-lg scale-105'
                     : 'border-muted-foreground/30 bg-background hover:border-primary/50 hover:bg-primary/5'
                   }
                 `}
               >
                 <div className="flex flex-col items-center justify-center h-full">
-                  <span className="text-xl font-bold">{rating}</span>
-                  <span className="text-xs opacity-80">{getRatingLabel(rating)}</span>
+                  <span className="text-lg sm:text-xl font-bold">{rating}</span>
+                  <span className="text-xs opacity-80 hidden sm:block">{getRatingLabel(rating)}</span>
                 </div>
                 
                 {/* Selection indicator */}
                 {selectedRating === rating && (
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-white" />
+                  <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                   </div>
                 )}
               </button>
@@ -223,7 +223,7 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
           {/* Selected Rating Details */}
           {selectedRating && (
             <div className={`
-              text-center p-4 rounded-xl border
+              text-center p-3 sm:p-4 rounded-xl border
               ${getRatingColor(selectedRating) === 'text-destructive'
                 ? 'bg-destructive/10 border-destructive/20 text-destructive'
                 : getRatingColor(selectedRating) === 'text-warning'
@@ -232,32 +232,32 @@ export default function VotingPanel({ team, onVote, isVotingActive }: VotingPane
                 ? 'bg-info/10 border-info/20 text-info'
                 : 'bg-success/10 border-success/20 text-success'}
             `}>
-              <h4 className={`font-semibold mb-2 ${getRatingColor(selectedRating)}`}>
+              <h4 className={`font-semibold mb-1 sm:mb-2 ${getRatingColor(selectedRating)}`}>
                 Rating {selectedRating}: {getRatingLabel(selectedRating)}
               </h4>
-              <p className={`text-sm ${getRatingColor(selectedRating)}/70`}>
+              <p className={`text-xs sm:text-sm ${getRatingColor(selectedRating)}/70`}>
                 {getRatingDescription(selectedRating)}
               </p>
             </div>
           )}
-          </div>
-        </CardContent>
-      
+        </div>
+      </CardContent>
+    
       <CardFooter className="pt-0">
         <Button 
           onClick={handleVoteSubmit}
           disabled={!selectedRating || !isVotingActive || isSubmitting}
-          className="w-full btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg h-12 text-lg font-semibold"
+          className="w-full btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg h-12 sm:h-14 text-base sm:text-lg font-semibold"
         >
           {isSubmitting ? (
             <>
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+              <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2" />
               Submitting Vote...
             </>
           ) : (
             <>
-              <Vote className="mr-2 h-5 w-5" />
-          Submit Vote
+              <Vote className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+              Submit Vote
             </>
           )}
         </Button>

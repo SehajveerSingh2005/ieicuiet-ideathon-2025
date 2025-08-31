@@ -68,16 +68,16 @@ export default function TeamRegistration() {
     };
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-10 sm:py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <TeamProfile team={teamToShow} />
           
-          <div className="mt-8 text-center">
+          <div className="mt-6 sm:mt-8 text-center">
             <Button 
               onClick={handleGoToVoting}
-              className="btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg px-8 py-3 text-lg font-semibold"
+              className="btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold"
             >
-              <Vote className="mr-2 h-5 w-5" />
+              <Vote className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               Go to Voting
             </Button>
           </div>
@@ -87,40 +87,40 @@ export default function TeamRegistration() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-10 sm:py-12 px-4">
       <div className="container mx-auto max-w-4xl">
         {/* Header Section */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-            <Users className="w-10 h-10 text-primary" />
+        <div className="text-center mb-10 sm:mb-12 animate-fade-in">
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 mb-4 sm:mb-6">
+            <Users className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-3 sm:mb-4">
             Team Registration
           </h1>
           
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Join Cre&apos;oVate and showcase your innovative project to the world.
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Join Cre'oVate and showcase your innovative project to the world.
             Register your team and start your journey to success!
           </p>
         </div>
 
         {/* Registration Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Form Section */}
           <div className="lg:col-span-2">
             <Card className="border-0 bg-gradient-to-br from-background to-muted/10 shadow-xl">
-              <CardHeader className="text-center pb-6">
-                <CardTitle className="text-2xl">Registration Details</CardTitle>
-                <CardDescription className="text-base">
+              <CardHeader className="text-center pb-5 sm:pb-6">
+                <CardTitle className="text-xl sm:text-2xl">Registration Details</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
                   Fill in your team information and create your account
                 </CardDescription>
               </CardHeader>
               
               <form onSubmit={handleSubmit}>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-5 sm:space-y-6">
                   {/* Team Name */}
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     <label htmlFor="teamName" className="text-sm font-semibold text-foreground flex items-center">
                       <Users className="w-4 h-4 text-primary mr-2" />
                       Team Name
@@ -131,12 +131,12 @@ export default function TeamRegistration() {
                       onChange={(e) => setTeamName(e.target.value)}
                       placeholder="Enter your creative team name"
                       required
-                      className="h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
+                      className="h-11 sm:h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
                     />
                   </div>
                   
                   {/* Email */}
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     <label htmlFor="email" className="text-sm font-semibold text-foreground flex items-center">
                       <Users className="w-4 h-4 text-secondary-foreground mr-2" />
                       Email Address
@@ -148,12 +148,12 @@ export default function TeamRegistration() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your team email address"
                       required
-                      className="h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
+                      className="h-11 sm:h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
                     />
                   </div>
                   
                   {/* Password */}
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     <label htmlFor="password" className="text-sm font-semibold text-foreground flex items-center">
                       <Users className="w-4 h-4 text-secondary-foreground mr-2" />
                       Password
@@ -166,7 +166,7 @@ export default function TeamRegistration() {
                       placeholder="Create a secure password (min 6 characters)"
                       required
                       minLength={6}
-                      className="h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
+                      className="h-11 sm:h-12 text-base border-2 border-muted-foreground/20 focus:border-primary/50 transition-colors"
                     />
                   </div>
                   
@@ -176,18 +176,18 @@ export default function TeamRegistration() {
                   <Button 
                     type="submit" 
                     disabled={!isFormValid || isSubmitting} 
-                    className="w-full btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg h-12 text-lg font-semibold"
+                    className="w-full btn-animate bg-gradient-to-r from-primary to-primary-foreground hover:from-primary/90 hover:to-primary-foreground/90 text-white shadow-lg h-11 sm:h-12 text-base sm:text-lg font-semibold"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+                        <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2" />
                         Creating Account...
                       </>
                     ) : (
                       <>
-                        <Users className="mr-2 h-5 w-5" />
+                        <Users className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                         Create Team Account
-                        <ArrowRight className="ml-2 h-5 w-5" />
+                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                       </>
                     )}
                   </Button>
@@ -197,16 +197,16 @@ export default function TeamRegistration() {
           </div>
 
           {/* Info Section */}
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {/* Event Info */}
             <Card className="border-0 bg-gradient-to-br from-primary/5 to-secondary/5 shadow-lg">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-lg flex items-center">
-                  <Target className="w-5 h-5 text-primary mr-2" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-base sm:text-lg flex items-center">
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-primary mr-2" />
                   Event Information
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm">
+              <CardContent className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
                   <span className="text-muted-foreground">Date: 3 September 2025</span>
@@ -232,13 +232,13 @@ export default function TeamRegistration() {
 
             {/* Guidelines */}
             <Card className="border-0 bg-gradient-to-br from-success/5 to-info/5 shadow-lg">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-lg flex items-center">
-                  <AlertCircle className="w-5 h-5 text-success mr-2" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-base sm:text-lg flex items-center">
+                  <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-success mr-2" />
                   Guidelines
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm">
+              <CardContent className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
                 <div className="flex items-start space-x-2">
                   <div className="w-2 h-2 rounded-full bg-success mt-2" />
                   <span className="text-muted-foreground">Teams of 2-5 members</span>
@@ -260,13 +260,13 @@ export default function TeamRegistration() {
 
             {/* Benefits */}
             <Card className="border-0 bg-gradient-to-br from-warning/5 to-primary/5 shadow-lg">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-lg flex items-center">
-                  <Trophy className="w-5 h-5 text-warning mr-2" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-base sm:text-lg flex items-center">
+                  <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-warning mr-2" />
                   Benefits
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm">
+              <CardContent className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
                 <div className="flex items-start space-x-2">
                   <div className="w-2 h-2 rounded-full bg-warning mt-2" />
                   <span className="text-muted-foreground">Network with experts</span>
