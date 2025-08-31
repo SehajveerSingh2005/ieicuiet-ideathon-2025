@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/app/components/ui/button";
 import { useFirebaseAuth } from '@/app/context/FirebaseAuthContext';
-import { Users, LogOut, User, Shield, Menu, X } from 'lucide-react';
+import { Users, LogOut, User, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const { user, logout } = useFirebaseAuth();
@@ -138,17 +138,6 @@ export default function Header() {
                     <span className="hidden sm:inline">Register Team</span>
                   </Button>
                 </Link>
-                 {/* Admin Login Button */}
-                 <Link href="/admin/login">
-                   <Button 
-                     variant="ghost"
-                     size="sm"
-                     className="btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10"
-                   >
-                     <Shield className="w-4 h-4 mr-2" />
-                     <span className="hidden sm:inline">Admin</span>
-                   </Button>
-                 </Link>
               </div>
             )}
           </div>
@@ -220,21 +209,6 @@ export default function Header() {
                   >
                     <Users className="w-4 h-4 mr-2" />
                     Register Team
-                  </Button>
-                </Link>
-                
-                <Link 
-                  href="/admin/login" 
-                  className="block w-full"
-                  onClick={closeMenu}
-                >
-                  <Button 
-                    variant="ghost"
-                    size="sm"
-                    className="w-full btn-animate text-muted-foreground hover:text-foreground hover:bg-muted/10 justify-start"
-                  >
-                    <Shield className="w-4 h-4 mr-2" />
-                    Admin Login
                   </Button>
                 </Link>
               </div>
