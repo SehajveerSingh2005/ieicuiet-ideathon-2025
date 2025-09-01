@@ -128,54 +128,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Event Information Section */}
-      <section className="py-16 px-4 bg-muted/10">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-6">
-            Event Information
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
-                <span className="text-base">Date: 3 September 2025</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
-                <span className="text-base">Time: 9:00 AM – 4:00 PM</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
-                <span className="text-base">Venue: Perrie Hall, Le Corbusier Block</span>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
-                <span className="text-base">Event Coordinators:</span>
-              </div>
-              <div className="flex items-center space-x-2 pl-7">
-                <span className="text-base">1. Naman Kumar (7988115047)</span>
-              </div>
-              <div className="flex items-center space-x-2 pl-7">
-                <span className="text-base">2. Mayank Jindal (9501059022)</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
-                <span className="text-base">Faculty Coordinator: Dr. Gagan Singla</span>
-              </div>
-            </div>
-          </div>
-          
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Cre'oVate 2025 brings together the brightest minds in technology for an unforgettable
-            experience of innovation, collaboration, and competition. Whether you're a seasoned developer
-            or a passionate newcomer, there's a place for you in this exciting event.
-          </p>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-16 px-4">

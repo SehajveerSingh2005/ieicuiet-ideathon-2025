@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import { FirebaseAuthProvider } from "./context/FirebaseAuthContext";
 import { FirebaseFirestoreProvider } from "./context/FirebaseFirestoreContext";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
@@ -54,6 +55,7 @@ export default function RootLayout({
                   <LeaderboardVisibilityProvider>
                     <Header />
                     <main>{children}</main>
+                    <Footer />
                   </LeaderboardVisibilityProvider>
                 </VotingControlProvider>
               </AdminAuthProvider>
