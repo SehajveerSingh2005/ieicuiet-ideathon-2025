@@ -379,7 +379,7 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
         return {
           currentVotingTeam: data.currentVotingTeam || null,
           isVotingActive: data.isVotingActive || false,
-          votingEndTime: data.votingEndTime ? new Date(data.votingEndTime.toDate()) : null,
+          votingEndTime: data.votingEndTime ? (typeof data.votingEndTime.toDate === 'function' ? new Date(data.votingEndTime.toDate()) : new Date(data.votingEndTime)) : null,
         };
       }
       return { currentVotingTeam: null, isVotingActive: false, votingEndTime: null };
@@ -402,7 +402,7 @@ export const FirebaseFirestoreProvider: React.FC<{ children: ReactNode }> = ({ c
       const dataToSet = {
         currentVotingTeam: state.currentVotingTeam || null,
         isVotingActive: state.isVotingActive,
-        votingEndTime: state.votingEndTime ? serverTimestamp() : null,
+        votingEndTime: state.votingEndTime ? Timestamp.fromDate(state.votingEndTime) : null,
         updatedAt: serverTimestamp(),
       };
       console.log('🔥 FirebaseFirestore: Data to set:', dataToSet);

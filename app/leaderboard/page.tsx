@@ -39,16 +39,15 @@ export default function LeaderboardPage() {
   }
 
   // Calculate team scores and rankings
-  const getTeamScore = (teamId: string) => {
+ const getTeamScore = (teamId: string) => {
     const teamVotes = votes.filter(vote => vote.teamId === teamId);
     if (teamVotes.length === 0) return 0;
     
     const totalRating = teamVotes.reduce((sum, vote) => sum + vote.rating, 0);
     const averageRating = totalRating / teamVotes.length;
-    const voteCount = teamVotes.length;
     
-    // Score formula: (average rating * vote count) + bonus for more votes
-    return (averageRating * voteCount) + (voteCount * 0.1);
+    // Return just the average rating as the score
+    return averageRating;
   };
 
   const getTeamVotes = (teamId: string) => {
@@ -67,11 +66,25 @@ export default function LeaderboardPage() {
     return getTeamVotes(teamId).length;
   };
 
-  // Sort teams by score
+  // Sort teams by average rating (score), with vote count as tiebreaker
   const sortedTeams = [...teams].sort((a, b) => {
     const scoreA = getTeamScore(a.id);
     const scoreB = getTeamScore(b.id);
-    return scoreB - scoreA;
+    
+    // Primary sort: by average rating (descending)
+    if (scoreB !== scoreA) {
+      return scoreB - scoreA;
+    }
+    
+    // Tiebreaker 1: by vote count (descending)
+    const voteCountA = getVoteCount(a.id);
+    const voteCountB = getVoteCount(b.id);
+    if (voteCountB !== voteCountA) {
+      return voteCountB - voteCountA;
+    }
+    
+    // Tiebreaker 2: by team name (alphabetically)
+    return a.name.localeCompare(b.name);
   });
 
   if (loading) {
@@ -110,7 +123,7 @@ export default function LeaderboardPage() {
             </h1>
             
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real-time rankings of all participating teams at Cre'oVate 2025 based on votes and ratings
+              Real-time rankings of all participating teams at Cre'oVate 2025 based on average star ratings
             </p>
           </div>
 
@@ -138,7 +151,7 @@ export default function LeaderboardPage() {
 
             <Card className="border-0 bg-gradient-to-br from-warning/5 to-warning/10 shadow-lg">
               <CardHeader className="pb-2 sm:pb-3">
-                <CardTitle className="text-xs sm:text-sm font-medium text-warning">Avg Rating</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium text-warning">Avg Stars</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl sm:text-3xl font-bold text-warning">
@@ -255,7 +268,7 @@ export default function LeaderboardPage() {
                 Complete Rankings
               </CardTitle>
               <CardDescription>
-                All teams ranked by their performance scores
+                All teams ranked by their average star ratings
               </CardDescription>
             </CardHeader>
             
